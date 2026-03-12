@@ -1,0 +1,37 @@
+### LOCALHOST — Get All Contacts
+GET http://localhost:8080/contacts
+
+###
+
+### LOCALHOST — Get One Contact (Herwin)
+GET http://localhost:8080/contacts/69b270a077dbef2723303420
+
+###
+
+### LOCALHOST — Get One Contact (Maria)
+GET http://localhost:8080/contacts/69b270a977dbef2723303422
+
+###
+
+### LOCALHOST — Get One Contact (John)
+GET http://localhost:8080/contacts/69b270b377dbef2723303424
+
+###
+
+### RENDER — Get All Contacts
+GET https://cse341-project1-18z7.onrender.com/contacts
+
+###
+
+### RENDER — Get One Contact (Herwin)
+GET https://cse341-project1-18z7.onrender.com/contacts/69b270a077dbef2723303420
+
+###
+
+### RENDER — Get One Contact (Maria)
+GET https://cse341-project1-18z7.onrender.com/contacts/69b270a977dbef2723303422
+
+###
+
+### RENDER — Get One Contact (John)
+GET https://cse341-project1-18z7.onrender.com/contacts/69b270b377dbef2723303424
