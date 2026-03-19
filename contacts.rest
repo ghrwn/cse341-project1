@@ -1,37 +1,121 @@
-### LOCALHOST — Get All Contacts
+### =========================
+### LOCALHOST — GET REQUESTS
+### =========================
+
+### Get All Contacts
 GET http://localhost:8080/contacts
 
 ###
 
-### LOCALHOST — Get One Contact (Herwin)
+### Get One Contact (Herwin)
 GET http://localhost:8080/contacts/69b270a077dbef2723303420
 
 ###
 
-### LOCALHOST — Get One Contact (Maria)
+### Get One Contact (Maria)
 GET http://localhost:8080/contacts/69b270a977dbef2723303422
 
 ###
 
-### LOCALHOST — Get One Contact (John)
+### Get One Contact (John)
 GET http://localhost:8080/contacts/69b270b377dbef2723303424
 
 ###
 
-### RENDER — Get All Contacts
+### =========================
+### LOCALHOST — POST / PUT / DELETE
+### =========================
+
+### Create Contact
+POST http://localhost:8080/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Test",
+  "lastName": "User",
+  "email": "testuser@example.com",
+  "favoriteColor": "Purple",
+  "birthday": "2000-01-01"
+}
+
+###
+
+### Update Contact (Herwin)
+PUT http://localhost:8080/contacts/69b270a077dbef2723303420
+Content-Type: application/json
+
+{
+  "firstName": "Herwin",
+  "lastName": "Updated",
+  "email": "herwinupdated@example.com",
+  "favoriteColor": "Black",
+  "birthday": "2000-05-10"
+}
+
+###
+
+### Delete Contact (REPLACE WITH NEW ID FROM POST)
+DELETE http://localhost:8080/contacts/69bb9e9af6e08ec003212e60
+
+###
+
+### =========================
+### RENDER — GET REQUESTS
+### =========================
+
+### Get All Contacts
 GET https://cse341-project1-18z7.onrender.com/contacts
 
 ###
 
-### RENDER — Get One Contact (Herwin)
+### Get One Contact (Herwin)
 GET https://cse341-project1-18z7.onrender.com/contacts/69b270a077dbef2723303420
 
 ###
 
-### RENDER — Get One Contact (Maria)
+### Get One Contact (Maria)
 GET https://cse341-project1-18z7.onrender.com/contacts/69b270a977dbef2723303422
 
 ###
 
-### RENDER — Get One Contact (John)
+### Get One Contact (John)
 GET https://cse341-project1-18z7.onrender.com/contacts/69b270b377dbef2723303424
+
+###
+
+### =========================
+### RENDER — POST / PUT / DELETE
+### =========================
+
+### Create Contact
+POST https://cse341-project1-18z7.onrender.com/contacts
+Content-Type: application/json
+
+{
+  "firstName": "Render",
+  "lastName": "User",
+  "email": "renderuser@example.com",
+  "favoriteColor": "Orange",
+  "birthday": "1998-08-08"
+}
+
+###
+
+### Update Contact (Herwin)
+PUT https://cse341-project1-18z7.onrender.com/contacts/69b270a077dbef2723303420
+Content-Type: application/json
+
+{
+  "firstName": "Herwin",
+  "lastName": "RenderUpdated",
+  "email": "herwinrender@example.com",
+  "favoriteColor": "Blue",
+  "birthday": "2000-05-10"
+}
+
+###
+
+### Delete Contact (REPLACE WITH NEW ID FROM POST)
+DELETE https://cse341-project1-18z7.onrender.com/contacts/PUT_NEW_ID_HERE
+
+###
