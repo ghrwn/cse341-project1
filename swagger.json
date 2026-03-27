@@ -193,6 +193,283 @@
           }
         }
       }
+    },
+    "/professional/": {
+      "get": {
+        "description": "Retrieve all professional records from the database.",
+        "responses": {
+          "200": {
+            "description": "Professional records retrieved successfully"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "Create a new professional record. All fields are required.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "professionalName",
+                "base64Image",
+                "nameLink",
+                "primaryDescription",
+                "workDescription1",
+                "workDescription2",
+                "linkTitleText",
+                "linkedInLink",
+                "githubLink"
+              ],
+              "properties": {
+                "professionalName": {
+                  "type": "string",
+                  "example": "Herwin"
+                },
+                "base64Image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "nameLink": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": {
+                      "type": "string",
+                      "example": "Herwin"
+                    },
+                    "url": {
+                      "type": "string",
+                      "example": "https://github.com/"
+                    }
+                  }
+                },
+                "primaryDescription": {
+                  "type": "string",
+                  "example": "is learning backend development."
+                },
+                "workDescription1": {
+                  "type": "string",
+                  "example": "I enjoy building APIs using Node.js and Express."
+                },
+                "workDescription2": {
+                  "type": "string",
+                  "example": "Currently studying web development."
+                },
+                "linkTitleText": {
+                  "type": "string",
+                  "example": "Learn more about me:"
+                },
+                "linkedInLink": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "example": "LinkedIn"
+                    },
+                    "link": {
+                      "type": "string",
+                      "example": "https://linkedin.com/"
+                    }
+                  }
+                },
+                "githubLink": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "example": "GitHub"
+                    },
+                    "link": {
+                      "type": "string",
+                      "example": "https://github.com/"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Professional record created successfully"
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid input"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/professional/{id}": {
+      "get": {
+        "description": "Retrieve a single professional record by MongoDB ObjectId.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ObjectId of the professional record"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Professional record retrieved successfully"
+          },
+          "400": {
+            "description": "Bad Request - Invalid professional id"
+          },
+          "404": {
+            "description": "Professional record not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "Update an existing professional record by id. All fields are required.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ObjectId of the professional record"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "required": [
+                "professionalName",
+                "base64Image",
+                "nameLink",
+                "primaryDescription",
+                "workDescription1",
+                "workDescription2",
+                "linkTitleText",
+                "linkedInLink",
+                "githubLink"
+              ],
+              "properties": {
+                "professionalName": {
+                  "type": "string",
+                  "example": "Herwin"
+                },
+                "base64Image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "nameLink": {
+                  "type": "object",
+                  "properties": {
+                    "firstName": {
+                      "type": "string",
+                      "example": "Herwin"
+                    },
+                    "url": {
+                      "type": "string",
+                      "example": "https://github.com/"
+                    }
+                  }
+                },
+                "primaryDescription": {
+                  "type": "string",
+                  "example": "is learning backend development."
+                },
+                "workDescription1": {
+                  "type": "string",
+                  "example": "I enjoy building APIs using Node.js and Express."
+                },
+                "workDescription2": {
+                  "type": "string",
+                  "example": "Currently studying web development."
+                },
+                "linkTitleText": {
+                  "type": "string",
+                  "example": "Learn more about me:"
+                },
+                "linkedInLink": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "example": "LinkedIn"
+                    },
+                    "link": {
+                      "type": "string",
+                      "example": "https://linkedin.com/"
+                    }
+                  }
+                },
+                "githubLink": {
+                  "type": "object",
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "example": "GitHub"
+                    },
+                    "link": {
+                      "type": "string",
+                      "example": "https://github.com/"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Professional record updated successfully"
+          },
+          "400": {
+            "description": "Bad Request - Invalid id or invalid input"
+          },
+          "404": {
+            "description": "Professional record not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "Delete a professional record by MongoDB ObjectId.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "MongoDB ObjectId of the professional record"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Professional record deleted successfully"
+          },
+          "400": {
+            "description": "Bad Request - Invalid professional id"
+          },
+          "404": {
+            "description": "Professional record not found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
     }
   }
 }
