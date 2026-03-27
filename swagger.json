@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Contacts API",
-    "description": "API documentation for the Contacts project",
+    "description": "API documentation for the Contacts project with CRUD operations, validation, and error handling.",
     "version": "1.0.0"
   },
   "host": "localhost:8080",
@@ -13,10 +13,10 @@
   "paths": {
     "/contacts/": {
       "get": {
-        "description": "",
+        "description": "Retrieve all contacts from the database.",
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Contacts retrieved successfully"
           },
           "500": {
             "description": "Internal Server Error"
@@ -24,28 +24,41 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "Create a new contact. All fields are required.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "favoriteColor",
+                "birthday"
+              ],
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "John"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Doe"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "john@example.com"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Blue"
                 },
                 "birthday": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "1990-01-01"
                 }
               }
             }
@@ -53,10 +66,10 @@
         ],
         "responses": {
           "201": {
-            "description": "Created"
+            "description": "Contact created successfully"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - Missing or invalid input"
           },
           "500": {
             "description": "Internal Server Error"
@@ -66,21 +79,25 @@
     },
     "/contacts/{id}": {
       "get": {
-        "description": "",
+        "description": "Retrieve a single contact by MongoDB ObjectId.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "MongoDB ObjectId of the contact"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Contact retrieved successfully"
+          },
+          "400": {
+            "description": "Bad Request - Invalid contact id"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Contact not found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -88,34 +105,48 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Update an existing contact by id. All fields are required.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "MongoDB ObjectId of the contact"
           },
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
+              "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "favoriteColor",
+                "birthday"
+              ],
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Jane"
                 },
                 "lastName": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Doe"
                 },
                 "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "jane@example.com"
                 },
                 "favoriteColor": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "Green"
                 },
                 "birthday": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "1992-05-10"
                 }
               }
             }
@@ -123,13 +154,13 @@
         ],
         "responses": {
           "204": {
-            "description": "No Content"
+            "description": "Contact updated successfully"
           },
           "400": {
-            "description": "Bad Request"
+            "description": "Bad Request - Invalid id or invalid input"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Contact not found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -137,21 +168,25 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Delete a contact by MongoDB ObjectId.",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "string",
+            "description": "MongoDB ObjectId of the contact"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "Contact deleted successfully"
+          },
+          "400": {
+            "description": "Bad Request - Invalid contact id"
           },
           "404": {
-            "description": "Not Found"
+            "description": "Contact not found"
           },
           "500": {
             "description": "Internal Server Error"
