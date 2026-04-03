@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const contactsController = require("../controllers/contacts");
+const { ensureAuthenticated } = require("../middleware/authenticate");
 
 /*  #swagger.tags = ['Contacts']
     #swagger.summary = 'Get all contacts'
@@ -22,7 +23,7 @@ router.get("/:id", contactsController.getSingleContact);
 
 /*  #swagger.tags = ['Contacts']
     #swagger.summary = 'Create a new contact'
-    #swagger.description = 'Creates a new contact. All fields are required.'
+    #swagger.description = 'Creates a new contact. Authentication required.'
     #swagger.parameters['body'] = {
       in: 'body',
       description: 'Contact data',
@@ -36,7 +37,7 @@ router.get("/:id", contactsController.getSingleContact);
       }
     }
 */
-router.post("/", contactsController.createContact);
+router.post("/", ensureAuthenticated, contactsController.createContact);
 
 /*  #swagger.tags = ['Contacts']
     #swagger.summary = 'Update a contact'
@@ -64,7 +65,7 @@ router.put("/:id", contactsController.updateContact);
 
 /*  #swagger.tags = ['Contacts']
     #swagger.summary = 'Delete a contact'
-    #swagger.description = 'Deletes a contact by id'
+    #swagger.description = 'Deletes a contact by id. Authentication required.'
     #swagger.parameters['id'] = {
       in: 'path',
       description: 'MongoDB contact id',
@@ -72,6 +73,6 @@ router.put("/:id", contactsController.updateContact);
       type: 'string'
     }
 */
-router.delete("/:id", contactsController.deleteContact);
+router.delete("/:id", ensureAuthenticated, contactsController.deleteContact);
 
 module.exports = router;
