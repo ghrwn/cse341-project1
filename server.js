@@ -12,8 +12,17 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 const port = process.env.PORT || 8080;
+const isProduction = process.env.BASE_URL && process.env.BASE_URL.startsWith("https://");
 
-app.use(cors());
+app.set("trust proxy", 1);
+
+app.use(
+  cors({
+    origin: true,
+    credentials: true
+  })
+);
+
 app.use(express.json());
 
 app.use(
@@ -21,9 +30,11 @@ app.use(
     secret: process.env.SESSION_SECRET || "default_session_secret",
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie: {
       httpOnly: true,
-      secure: false
+      secure: isProduction,
+      sameSite: "lax"
     }
   })
 );
